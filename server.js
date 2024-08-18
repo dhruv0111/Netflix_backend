@@ -1,6 +1,7 @@
 import express from "express";
 import cookieParser from "cookie-parser";
 import path from "path";
+import cors from "cors"; // Import cors
 
 import authRoutes from "./routes/auth.route.js";
 import movieRoutes from "./routes/movie.route.js";
@@ -16,6 +17,7 @@ const app = express();
 const PORT = ENV_VARS.PORT;
 const __dirname = path.resolve();
 
+app.use(cors()); // Enable CORS for all origins
 app.use(express.json()); // will allow us to parse req.body
 app.use(cookieParser());
 
@@ -36,3 +38,4 @@ app.listen(PORT, () => {
 	console.log("Server started at http://localhost:" + PORT);
 	connectDB();
 });
+
